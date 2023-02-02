@@ -125,8 +125,14 @@ app.post('/',(req,res)=>{
 
 })
 
-app.listen(PORT,()=>{
+function callApi(){
+    
+    app.listen(PORT,()=>{
 
-    console.log("server is started in port " + PORT);
+        console.log("server is started in port " + PORT);
+    
+    })
+}
 
-})
+callApi();
+
