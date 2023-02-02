@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const bodyparser= require('body-parser')
 const cors = require('cors');
@@ -12,9 +13,9 @@ app.use(express.urlencoded({extended:true}))
 
 
 mongoose.set('strictQuery', false)
+const uri = process.env.PASSWORD_MONGOOSE;
 
-
-const connection_string = `mongodb+srv://mianglouch123:${Process.env.PASSWORD_MONGOOSE}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
+const connection_string = `mongodb+srv://mianglouch123:${uri}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(connection_string).
 then((res)=>{
