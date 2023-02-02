@@ -14,10 +14,7 @@ app.use(express.urlencoded({extended:true}))
 mongoose.set('strictQuery', false)
 
 
-
-const PASSWORD_MONGOOSE = "T4xpu2Vx7iRrPmfn";
-
-const connection_string = `mongodb+srv://mianglouch123:${PASSWORD_MONGOOSE}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
+const connection_string = `mongodb+srv://mianglouch123:${Process.env.PASSWORD_MONGOOSE}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
 
 mongoose.connect(connection_string).
 then((res)=>{
