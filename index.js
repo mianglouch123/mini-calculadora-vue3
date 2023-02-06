@@ -4,7 +4,7 @@ const app = express();
 const bodyparser= require('body-parser')
 const cors = require('cors');
 const mongoose = require('mongoose');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 
 app.use(bodyparser.json())
@@ -15,22 +15,20 @@ app.use(express.urlencoded({extended:true}))
 mongoose.set('strictQuery', false)
 const uri = process.env.PASSWORD_MONGOOSE;
 
-const connection_string = `mongodb+srv://mianglouch123:${uri}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
 
-mongoose.connect(connection_string).
+
+
+async function callMongoDb(){
+ const connection_string = `mongodb+srv://mianglouch123:${uri}@cluster0.xmcegc2.mongodb.net/?retryWrites=true&w=majority`;
+
+return mongoose.connect(connection_string).
 then((res)=>{
     console.log('connection mongoose database');
 }).
 catch((err)=>{
     console.log('conection failed');
 })
-
-
-
-
-
-
-
+}
 
 //Schema
 
@@ -125,12 +123,13 @@ app.post('/',(req,res)=>{
 
 function callApi(){
     
-    app.listen(PORT,()=>{
+   return app.listen(PORT,()=>{
 
         console.log("server is started in port " + PORT);
     
     })
 }
 
+callMongoDb()
 callApi();
 
