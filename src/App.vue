@@ -7,7 +7,7 @@
 
 </template>
 
-
+// recuerda
 
 <script >
 import simpleCalculator from './components/simpleCalculator.vue'
